@@ -5,13 +5,16 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
@@ -43,7 +46,12 @@ import com.sparrow.amp2.ui.components.LoadingIndicator
 @Composable
 fun ProductListScreen(
     onProductClick: (Int) -> Unit,
-    viewModel: ProductListViewModel = viewModel()
+    categoryId: Int? = null,
+    categoryName: String? = null,
+    onBackClick: (() -> Unit)? = null,
+    viewModel: ProductListViewModel = viewModel {
+        ProductListViewModel(categoryId = categoryId)
+    }
 ) {
     val viewState by viewModel.viewState.collectAsState()
     val products = viewModel.products.collectAsLazyPagingItems()
@@ -53,9 +61,20 @@ fun ProductListScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
+            .windowInsetsPadding(WindowInsets.statusBars)
     ) {
         // Top App Bar with Search and View Toggle
         TopAppBar(
+            navigationIcon = {
+                if (categoryName != null && onBackClick != null) {
+                    IconButton(onClick = onBackClick) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Back"
+                        )
+                    }
+                }
+            },
             title = {
                 if (viewState.isSearchBarExpanded) {
                     OutlinedTextField(
@@ -69,6 +88,12 @@ fun ProductListScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .semantics { contentDescription = "Search products text field" }
+                    )
+                } else if (categoryName != null) {
+                    Text(
+                        text = categoryName,
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.Bold
                     )
                 } else {
                     Row(

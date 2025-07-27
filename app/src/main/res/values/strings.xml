@@ -44,4 +44,7 @@
     <string name="back_button">Back</string>
     <string name="search_text_field">Search products text field</string>
     <string name="retry_button">Retry button</string>
+    
+    <!-- Firebase Google Sign-In -->
+    <string name="default_web_client_id">17323447537-kiuh05hf8h831dde6aeuns8mck49ihug.apps.googleusercontent.com</string>
 </resources>

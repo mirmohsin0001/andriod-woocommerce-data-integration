@@ -7,6 +7,7 @@ import com.sparrow.amp2.data.api.WooCommerceApiService
 import com.sparrow.amp2.data.mapper.ProductMapper
 import com.sparrow.amp2.data.paging.ProductPagingSource
 import com.sparrow.amp2.domain.model.Product
+import com.sparrow.amp2.domain.model.Category
 import com.sparrow.amp2.domain.repository.ProductRepository
 import kotlinx.coroutines.flow.Flow
 class ProductRepositoryImpl(
@@ -71,6 +72,48 @@ class ProductRepositoryImpl(
                     consumerSecret = CONSUMER_SECRET,
                     productMapper = productMapper,
                     searchQuery = query
+                )
+            }
+        ).flow
+    }
+    
+    override suspend fun getCategories(): Result<List<Category>> {
+        return try {
+            val response = apiService.getCategories(
+                consumerKey = CONSUMER_KEY,
+                consumerSecret = CONSUMER_SECRET
+            )
+            
+            if (response.isSuccessful && response.body() != null) {
+                val categories = response.body()!!.map { categoryResponse ->
+                    Category(
+                        id = categoryResponse.id,
+                        name = categoryResponse.name,
+                        slug = categoryResponse.slug
+                    )
+                }
+                Result.success(categories)
+            } else {
+                Result.failure(Exception("Failed to fetch categories: ${response.message()}"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+    
+    override fun getProductsByCategory(categoryId: Int): Flow<PagingData<Product>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = NETWORK_PAGE_SIZE,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = {
+                ProductPagingSource(
+                    apiService = apiService,
+                    consumerKey = CONSUMER_KEY,
+                    consumerSecret = CONSUMER_SECRET,
+                    productMapper = productMapper,
+                    categoryId = categoryId
                 )
             }
         ).flow

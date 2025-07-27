@@ -2,4 +2,11 @@
 <resources>
 
     <style name="Theme.Amp2" parent="android:Theme.Material.Light.NoActionBar" />
+    
+    <style name="Theme.Amp2.SplashScreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#FFFFFF</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_logo_padded</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="postSplashScreenTheme">@style/Theme.Amp2</item>
+    </style>
 </resources>

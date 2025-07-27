@@ -4,6 +4,8 @@ import com.sparrow.amp2.data.api.WooCommerceApiService
 import com.sparrow.amp2.data.mapper.ProductMapper
 import com.sparrow.amp2.data.repository.ProductRepositoryImpl
 import com.sparrow.amp2.domain.repository.ProductRepository
+import com.sparrow.amp2.data.auth.AuthRepository
+import com.sparrow.amp2.data.auth.AuthRepositoryImpl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -47,5 +49,9 @@ object DependencyContainer {
     
     val productRepository: ProductRepository by lazy {
         ProductRepositoryImpl(wooCommerceApiService, productMapper)
+    }
+    
+    val authRepository: AuthRepository by lazy {
+        AuthRepositoryImpl()
     }
 }

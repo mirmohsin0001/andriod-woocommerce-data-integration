@@ -13,7 +13,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 
 class ProductListViewModel(
-    private val productRepository: ProductRepository = DependencyContainer.productRepository
+    private val productRepository: ProductRepository = DependencyContainer.productRepository,
+    private val categoryId: Int? = null
 ) : ViewModel() {
     
     private val _viewState = MutableStateFlow(ProductListViewState())
@@ -23,10 +24,10 @@ class ProductListViewModel(
     
     val products: Flow<PagingData<Product>> = _searchQuery
         .flatMapLatest { query ->
-            if (query.isBlank()) {
-                productRepository.getProducts()
-            } else {
-                productRepository.searchProducts(query)
+            when {
+                query.isNotBlank() -> productRepository.searchProducts(query)
+                categoryId != null -> productRepository.getProductsByCategory(categoryId)
+                else -> productRepository.getProducts()
             }
         }
         .cachedIn(viewModelScope)

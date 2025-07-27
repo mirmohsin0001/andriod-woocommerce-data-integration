@@ -1,6 +1,7 @@
 package com.sparrow.amp2.data.api
 
 import com.sparrow.amp2.data.model.ProductResponse
+import com.sparrow.amp2.data.model.CategoryResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -41,4 +42,12 @@ interface WooCommerceApiService {
         @Query("consumer_key") consumerKey: String,
         @Query("consumer_secret") consumerSecret: String
     ): Response<List<ProductResponse>>
+    
+    @GET("products/categories")
+    suspend fun getCategories(
+        @Query("per_page") perPage: Int = 100,
+        @Query("hide_empty") hideEmpty: Boolean = true,
+        @Query("consumer_key") consumerKey: String,
+        @Query("consumer_secret") consumerSecret: String
+    ): Response<List<CategoryResponse>>
 }

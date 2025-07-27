@@ -1,0 +1,72 @@
+{
+  "project_info": {
+    "project_number": "420922113550",
+    "project_id": "kashmiraromatics-f525d",
+    "storage_bucket": "kashmiraromatics-f525d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420922113550:android:5cb6d3ef5db29615cd865f",
+        "android_client_info": {
+          "package_name": "com.sparrow.amp2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "420922113550-6t5392imah6bbqans4egk2l0iif6rjbi.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "17323447537-kiuh05hf8h831dde6aeuns8mck49ihug.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU9mc1rHYVKTbpbTAz7X0afkdspImJ89U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "420922113550-6t5392imah6bbqans4egk2l0iif6rjbi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420922113550:android:284993c62e18f982cd865f",
+        "android_client_info": {
+          "package_name": "com.sparrow.kashmiraromatics"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "420922113550-6t5392imah6bbqans4egk2l0iif6rjbi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU9mc1rHYVKTbpbTAz7X0afkdspImJ89U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "420922113550-6t5392imah6bbqans4egk2l0iif6rjbi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

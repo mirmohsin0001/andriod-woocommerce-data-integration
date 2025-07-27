@@ -9,7 +9,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -37,6 +37,7 @@ import com.sparrow.amp2.ui.components.LoadingIndicator
 fun ProductDetailScreen(
     productId: Int,
     onBackClick: () -> Unit,
+    onContactClick: () -> Unit,
     viewModel: ProductDetailViewModel = viewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -93,24 +94,9 @@ fun ProductDetailScreen(
                     currentImageIndex = uiState.currentImageIndex,
                     onTabSelected = viewModel::selectTab,
                     onImageIndexChanged = viewModel::updateCurrentImageIndex,
-                    onAddToCartClick = viewModel::addToCart
+                    onContactClick = onContactClick
                 )
             }
-        }
-        
-        // Show Add to Cart Success Message
-        if (uiState.showAddToCartMessage) {
-            LaunchedEffect(Unit) {
-                kotlinx.coroutines.delay(2000)
-                viewModel.dismissAddToCartMessage()
-            }
-        }
-    }
-    
-    // Snackbar for Add to Cart
-    if (uiState.showAddToCartMessage) {
-        LaunchedEffect(Unit) {
-            // Show snackbar (implement with SnackbarHost if needed)
         }
     }
 }
@@ -123,7 +109,7 @@ fun ProductDetailContent(
     currentImageIndex: Int,
     onTabSelected: (ProductDetailTab) -> Unit,
     onImageIndexChanged: (Int) -> Unit,
-    onAddToCartClick: () -> Unit
+    onContactClick: () -> Unit
 ) {
     val pagerState = rememberPagerState(pageCount = { product.images.size })
     
@@ -212,20 +198,20 @@ fun ProductDetailContent(
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                text = "$${product.price}",
-                                style = MaterialTheme.typography.headlineMedium,
-                                fontWeight = FontWeight.Bold,
-                                color = MaterialTheme.colorScheme.primary
+                            text = "₹${product.price}",
+                            style = MaterialTheme.typography.headlineMedium,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.primary
                             )
                             
                             if (product.onSale && !product.salePrice.isNullOrEmpty()) {
-                                Spacer(modifier = Modifier.width(8.dp))
-                                Text(
-                                    text = "$${product.regularPrice}",
-                                    style = MaterialTheme.typography.titleMedium,
-                                    color = MaterialTheme.colorScheme.outline,
-                                    textDecoration = androidx.compose.ui.text.style.TextDecoration.LineThrough
-                                )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                            text = "₹${product.regularPrice}",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = MaterialTheme.colorScheme.outline,
+                            textDecoration = androidx.compose.ui.text.style.TextDecoration.LineThrough
+                            )
                             }
                         }
                         
@@ -313,21 +299,21 @@ fun ProductDetailContent(
             }
         }
         
-        // Sticky Add to Cart Button
+        // Sticky Contact Us Button
         ExtendedFloatingActionButton(
-            onClick = onAddToCartClick,
+            onClick = onContactClick,
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(16.dp)
-                .semantics { contentDescription = "Add to cart" },
+                .semantics { contentDescription = "Contact us" },
             containerColor = MaterialTheme.colorScheme.primary
         ) {
             Icon(
-                Icons.Default.Add,
+                Icons.Default.Phone,
                 contentDescription = null
             )
             Spacer(modifier = Modifier.width(8.dp))
-            Text("Add to Cart")
+            Text("Contact Us")
         }
     }
 }

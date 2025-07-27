@@ -68,11 +68,42 @@ fun ProductListScreen(
                             .semantics { contentDescription = "Search products text field" }
                     )
                 } else {
-                    Text(
-                        text = "Product Showcase",
-                        style = MaterialTheme.typography.headlineSmall,
-                        fontWeight = FontWeight.Bold
-                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        // Logo/Icon
+                        Box(
+                            modifier = Modifier
+                                .size(40.dp)
+                                .background(
+                                    MaterialTheme.colorScheme.primary,
+                                    RoundedCornerShape(8.dp)
+                                ),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = "GB",
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.onPrimary
+                            )
+                        }
+                        
+                        Spacer(modifier = Modifier.width(12.dp))
+                        
+                        Column {
+                            Text(
+                                text = "Garden Blossom",
+                                style = MaterialTheme.typography.titleLarge,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = "Plant Store",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                    }
                 }
             },
             actions = {
@@ -254,8 +285,32 @@ fun ProductGridItem(
                 
                 Spacer(modifier = Modifier.height(4.dp))
                 
+                // Category
+                if (product.categories.isNotEmpty()) {
+                    val categoryName = product.categories.first().name
+                    val (backgroundColor, textColor) = when (categoryName.lowercase()) {
+                        "flower" -> Pair(Color(0xFF4CAF50).copy(alpha = 0.15f), Color(0xFF1B5E20))
+                        "fruit" -> Pair(Color(0xFFFF9800).copy(alpha = 0.15f), Color(0xFFE65100))
+                        else -> Pair(Color(0xFF2196F3).copy(alpha = 0.15f), Color(0xFF0D47A1))
+                    }
+                    
+                    Text(
+                        text = categoryName,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = textColor,
+                        fontWeight = FontWeight.Medium,
+                        modifier = Modifier
+                            .background(
+                                backgroundColor,
+                                RoundedCornerShape(6.dp)
+                            )
+                            .padding(horizontal = 8.dp, vertical = 3.dp)
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                }
+                
                 Text(
-                    text = "$${product.price}",
+                    text = "₹${product.price}",
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.primary
@@ -263,7 +318,7 @@ fun ProductGridItem(
                 
                 if (product.onSale && !product.salePrice.isNullOrEmpty()) {
                     Text(
-                        text = "$${product.regularPrice}",
+                        text = "₹${product.regularPrice}",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.outline,
                         textDecoration = androidx.compose.ui.text.style.TextDecoration.LineThrough
@@ -326,13 +381,38 @@ fun ProductListItem(
                     overflow = TextOverflow.Ellipsis
                 )
                 
+                Spacer(modifier = Modifier.height(4.dp))
+                
+                // Category
+                if (product.categories.isNotEmpty()) {
+                    val categoryName = product.categories.first().name
+                    val (backgroundColor, textColor) = when (categoryName.lowercase()) {
+                        "flower" -> Pair(Color(0xFF4CAF50).copy(alpha = 0.15f), Color(0xFF1B5E20))
+                        "fruit" -> Pair(Color(0xFFFF9800).copy(alpha = 0.15f), Color(0xFFE65100))
+                        else -> Pair(Color(0xFF2196F3).copy(alpha = 0.15f), Color(0xFF0D47A1))
+                    }
+                    
+                    Text(
+                        text = categoryName,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = textColor,
+                        fontWeight = FontWeight.Medium,
+                        modifier = Modifier
+                            .background(
+                                backgroundColor,
+                                RoundedCornerShape(6.dp)
+                            )
+                            .padding(horizontal = 8.dp, vertical = 3.dp)
+                    )
+                }
+                
                 Spacer(modifier = Modifier.height(8.dp))
                 
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "$${product.price}",
+                        text = "₹${product.price}",
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.primary
@@ -341,7 +421,7 @@ fun ProductListItem(
                     if (product.onSale && !product.salePrice.isNullOrEmpty()) {
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
-                            text = "$${product.regularPrice}",
+                            text = "₹${product.regularPrice}",
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.outline,
                             textDecoration = androidx.compose.ui.text.style.TextDecoration.LineThrough

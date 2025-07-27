@@ -45,18 +45,7 @@ class ProductDetailViewModel(
         _uiState.value = _uiState.value.copy(currentImageIndex = index)
     }
     
-    fun addToCart() {
-        // TODO: Implement add to cart functionality
-        _uiState.value = _uiState.value.copy(
-            showAddToCartMessage = true
-        )
-    }
-    
-    fun dismissAddToCartMessage() {
-        _uiState.value = _uiState.value.copy(
-            showAddToCartMessage = false
-        )
-    }
+
 }
 
 data class ProductDetailUiState(
@@ -64,8 +53,7 @@ data class ProductDetailUiState(
     val isLoading: Boolean = false,
     val error: String? = null,
     val selectedTab: ProductDetailTab = ProductDetailTab.DESCRIPTION,
-    val currentImageIndex: Int = 0,
-    val showAddToCartMessage: Boolean = false
+    val currentImageIndex: Int = 0
 )
 
 enum class ProductDetailTab(val title: String) {

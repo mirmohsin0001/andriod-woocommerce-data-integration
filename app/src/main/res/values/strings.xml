@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Product Showcase</string>
+    
+    <!-- Navigation -->
+    <string name="product_list_title">Products</string>
+    <string name="product_detail_title">Product Details</string>
+    
+    <!-- Product List -->
+    <string name="search_products">Search products...</string>
+    <string name="switch_to_grid_view">Switch to grid view</string>
+    <string name="switch_to_list_view">Switch to list view</string>
+    <string name="open_search">Open search</string>
+    <string name="close_search">Close search</string>
+    
+    <!-- Product Detail -->
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="product_added_to_cart">Product added to cart!</string>
+    <string name="in_stock">In Stock</string>
+    <string name="out_of_stock">Out of Stock</string>
+    <string name="on_backorder">On Backorder</string>
+    
+    <!-- Tabs -->
+    <string name="tab_description">Description</string>
+    <string name="tab_specifications">Specifications</string>
+    <string name="tab_reviews">Reviews</string>
+    
+    <!-- Error Messages -->
+    <string name="error_loading_products">Failed to load products. Please try again.</string>
+    <string name="error_loading_product">Failed to load product details. Please try again.</string>
+    <string name="error_no_network">No internet connection. Please check your network.</string>
+    <string name="retry">Retry</string>
+    
+    <!-- Empty States -->
+    <string name="no_products_found">No products found.</string>
+    <string name="no_description_available">No description available.</string>
+    <string name="no_specifications_available">No specifications available.</string>
+    <string name="no_reviews_available">No reviews yet.</string>
+    
+    <!-- Content Descriptions for Accessibility -->
+    <string name="product_image">Product image</string>
+    <string name="product_rating">Product rating</string>
+    <string name="loading">Loading</string>
+    <string name="error_occurred">Error occurred</string>
+    <string name="back_button">Back</string>
+    <string name="search_text_field">Search products text field</string>
+    <string name="retry_button">Retry button</string>
+</resources>

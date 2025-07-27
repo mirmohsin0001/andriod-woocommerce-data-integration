@@ -1,6 +1,7 @@
 package com.sparrow.amp2.ui.productlist
 
 import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -20,6 +21,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import com.sparrow.amp2.R
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -71,34 +74,26 @@ fun ProductListScreen(
                     Row(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        // Logo/Icon
-                        Box(
+                        // Custom Logo
+                        Image(
+                            painter = painterResource(id = R.drawable.logo),
+                            contentDescription = "Garden Blossom Logo",
                             modifier = Modifier
                                 .size(40.dp)
-                                .background(
-                                    MaterialTheme.colorScheme.primary,
-                                    RoundedCornerShape(8.dp)
-                                ),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Text(
-                                text = "GB",
-                                style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.Bold,
-                                color = MaterialTheme.colorScheme.onPrimary
-                            )
-                        }
+                                .clip(RoundedCornerShape(8.dp)),
+                            contentScale = ContentScale.Fit
+                        )
                         
                         Spacer(modifier = Modifier.width(12.dp))
                         
                         Column {
                             Text(
-                                text = "Garden Blossom",
+                                text = "Kashmir Aromatics",
                                 style = MaterialTheme.typography.titleLarge,
                                 fontWeight = FontWeight.Bold
                             )
                             Text(
-                                text = "Plant Store",
+                                text = "Valley's Aromatic Tale",
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )

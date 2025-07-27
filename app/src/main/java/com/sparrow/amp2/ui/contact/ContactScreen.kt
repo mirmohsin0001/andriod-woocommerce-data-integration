@@ -35,9 +35,9 @@ fun ContactScreen() {
         Spacer(modifier = Modifier.height(8.dp))
         
         Text(
-            text = "Garden Blossom Store",
+            text = "Kashmir Aromatics ",
             style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.Medium
+            fontWeight = FontWeight.Normal
         )
         
         Spacer(modifier = Modifier.height(32.dp))
@@ -46,7 +46,7 @@ fun ContactScreen() {
         ContactInfoCard(
             icon = Icons.Default.Phone,
             title = "Phone",
-            info = "+91 9876543210"
+            info = "+91 7006434703"
         )
         
         Spacer(modifier = Modifier.height(16.dp))
@@ -54,7 +54,7 @@ fun ContactScreen() {
         ContactInfoCard(
             icon = Icons.Default.Email,
             title = "Email",
-            info = "contact@gardenblossom.store"
+            info = "tabassumrubeena@gmail.com"
         )
         
         Spacer(modifier = Modifier.height(16.dp))
@@ -62,7 +62,7 @@ fun ContactScreen() {
         ContactInfoCard(
             icon = Icons.Default.LocationOn,
             title = "Address",
-            info = "123 Garden Street\nBlossom City, GC 123456\nIndia"
+            info = "Yarikalan Chadoora\nJammu and Kashmir, 191113-IN \nIndia"
         )
         
         Spacer(modifier = Modifier.height(16.dp))
